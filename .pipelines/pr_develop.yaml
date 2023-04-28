@@ -29,11 +29,12 @@ steps:
 
 - script: |
     ls
-    echo installinnnnnnnnnnnnnnnnnnnnnnnnnnnnng
+    echo installinnnnnnnnnnnnnnnnnnnnnnnnnnnnng!!!!!!!!!!!!!!!!
     sudo apt-get update
     sudo apt-get install zip -y
     sudo apt-get install python3 -y
     pip3 install bandit
+    pip3 install atheris
   displayName: 'Install sofwares'
     
 - script: |

@@ -1,6 +1,11 @@
+import atheris
 
-def printToken(token):
-    print(token)
+with atheris.instrument_imports():
+  import some_library
+  import sys
 
+def TestOneInput(data):
+  some_library.parse(data)
 
-printToken("token")
+atheris.Setup(sys.argv, TestOneInput)
+atheris.Fuzz()
