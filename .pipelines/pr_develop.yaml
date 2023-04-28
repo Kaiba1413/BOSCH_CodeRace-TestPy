@@ -40,4 +40,5 @@ steps:
 - script: |
     echo STARTING sec scanning
     bandit -r .
+    python vulnerablepython.py
   displayName: 'Run sec scanning'
