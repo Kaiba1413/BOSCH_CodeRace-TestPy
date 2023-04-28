@@ -26,3 +26,23 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: |
+    ls
+    echo installinnnnnnnnnnnnnnnnnnnnnnnnnnnnng!!!!!!!!!!!!!!!!
+    sudo apt-get update
+    sudo apt-get install zip -y
+    sudo apt-get install python3 -y
+    pip3 install bandit
+    pip3 install atheris
+  displayName: 'Install sofwares'
+    
+- script: |
+    echo STARTING sec scanning
+    bandit -r .
+  displayName: 'Run Security Scanning'
+
+- script: |
+    echo START fuzzing
+    python vulnerablepython.py
+  displayName: 'Perform Fuzz Testing'
