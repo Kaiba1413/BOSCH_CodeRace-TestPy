@@ -40,5 +40,9 @@ steps:
 - script: |
     echo STARTING sec scanning
     bandit -r .
+  displayName: 'Run Security Scanning'
+
+- script: |
+    echo START fuzzing
     python vulnerablepython.py
-  displayName: 'Run sec scanning'
+  displayName: 'Perform Fuzz Testing'

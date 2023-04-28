@@ -1,11 +1,9 @@
 import atheris
-
-with atheris.instrument_imports():
-  import some_library
-  import sys
+import sys
 
 def TestOneInput(data):
-  some_library.parse(data)
+  if data == b"bad":
+    raise RuntimeError("Badass")
 
 atheris.Setup(sys.argv, TestOneInput)
 atheris.Fuzz()
