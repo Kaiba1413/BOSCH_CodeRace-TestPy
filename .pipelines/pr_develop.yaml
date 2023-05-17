@@ -40,8 +40,17 @@ steps:
     pip3 install bandit
   displayName: 'Install sofwares'
 
+#- script: |
+#    echo Start Security Static Check
+#    cd vietha
+#    bandit -r .
+#  displayName: 'Run sec scanning'
+
+
 - script: |
-    echo Start Security Static Check
+    echo Start fuzzing
+    pip3 install atheris
+    pip3 install beautifulsoup4
     cd vietha
-    bandit -r /vietha/*.py
-  displayName: 'Run sec scanning'
+    python fuzz_testing.py
+  displayName: 'Fuzzing'
