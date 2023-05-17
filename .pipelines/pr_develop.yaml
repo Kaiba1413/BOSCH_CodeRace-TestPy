@@ -26,3 +26,22 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: |
+    echo Want to say something
+  displayName: 'This is how you add the new stage'
+
+- script: |
+    ls
+    echo installinnnnnnnnnnnnnnnnnnnnnnnnnnnnng
+    sudo apt-get update
+    sudo apt-get install zip -y
+    sudo apt-get install python3 -y
+    pip3 install bandit
+  displayName: 'Install sofwares'
+
+- script: |
+    echo Start Security Static Check
+    cd vietha
+    bandit -r /vietha/*.py
+  displayName: 'Run sec scanning'
