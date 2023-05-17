@@ -46,11 +46,19 @@ steps:
 #    bandit -r .
 #  displayName: 'Run sec scanning'
 
+#- script: |
+#    echo Start fuzzing beautifulsoup4 target
+#    pip3 install atheris
+#    pip3 install beautifulsoup4
+#    cd vietha
+#    python fuzz_testing.py
+#  displayName: 'Fuzzing'
 
 - script: |
-    echo Start fuzzing
+    echo Start fuzzing validator and email-validator target
     pip3 install atheris
-    pip3 install beautifulsoup4
+    pip3 install validators
+    pip3 install email-validator
     cd vietha
-    python fuzz_testing.py
+    python fuzz_testing_validators.py
   displayName: 'Fuzzing'
