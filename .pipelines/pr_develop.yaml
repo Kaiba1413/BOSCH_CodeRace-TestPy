@@ -40,4 +40,4 @@ steps:
     pip3 install atheris
     cd src
     python test.py
- displayName: 'Fuzzing'
+  displayName: 'Fuzzing'
