@@ -36,8 +36,8 @@ steps:
   displayName: 'This is how we as TA added the new stage'
 
 - script: |
-   echo Start fuzzing test target
-   pip3 install atheris
-   cd src
-   python test.py
+    echo Start fuzzing test target
+    pip3 install atheris
+    cd src
+    python test.py
  displayName: 'Fuzzing'
