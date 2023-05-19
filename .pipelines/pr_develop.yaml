@@ -38,6 +38,7 @@ steps:
 - script: |
     echo Start fuzzing test target
     pip3 install atheris
+    pip3 install flask
     cd src
-    python test.py
+    python functions.py
   displayName: 'Fuzzing'
