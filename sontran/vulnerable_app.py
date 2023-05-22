@@ -29,6 +29,26 @@ def find_user(username):
         cur.execute(f"""select username from USERS where name = '%s'""" % username)
         output = cur.fetchone()
     return output
+# CWE-628: Function Call with Incorrectly Specified Arguments
+ADMIN_ROLES = 1
+USER_GRANTED_ROLES = 2
+def accessGranted(resource, user):
+    userRoles = getUserRoles(user)
+    return accessGranted(resource, ADMIN_ROLES)
+
+def getUserRoles(user):
+    if user == 1: return ADMIN_ROLES
+    if user == 2: return USER_GRANTED_ROLES
+    return 0
+
+def accessGranted(resource, userRoles):
+    # grant or deny access based on user roles
+    if (userRoles == ADMIN_ROLES):
+        print("Access granted for ADMIN")
+    elif (userRoles == USER_GRANTED_ROLES):
+        print("Access granted for USER-GRANTED-ROLES")
+    else:
+        print("Access denied")
 
 ###############################
 # CWE-1041: Use of Redundant Code
