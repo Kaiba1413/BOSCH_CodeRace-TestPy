@@ -29,3 +29,31 @@ def find_user(username):
         cur.execute(f"""select username from USERS where name = '%s'""" % username)
         output = cur.fetchone()
     return output
+
+###############################
+# CWE-1041: Use of Redundant Code
+# CWE-561: Dead Code
+# CWE-570: Expression is Always False
+def calculate_surface_area(s, r):
+    pi = 3.14159
+    surface_area = 0
+    result = 0
+    isSValid = False
+    isRValid = False
+
+    if(r > 0.0 and s > 0.0):
+        isRValid = True
+        isSValid = True
+        surface_area = pi * r * s + pi * pow(r, 2)
+        if (not isRValid or not isSValid):
+            print("This is dead code !!!")
+
+    if(r > 1.0 and s > 0.0):
+        isRValid = True
+        isRValid = True
+        surface_area = pi * r * s + pi * pow(r, 2)
+    
+    if (isRValid and isSValid):
+        result = surface_area
+
+    return result

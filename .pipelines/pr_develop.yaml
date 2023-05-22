@@ -40,15 +40,11 @@ steps:
     echo Start Security Static Check
     ./codeql/codeql database create codeql-dbs --source-root=sontran --language=python
     ./codeql/codeql database analyze codeql-dbs python-code-scanning.qls \
-    --format=sarif-latest --sarif-category=codeql-dbs --output=python-results.sarif
+    --format=csv --output=python-results.csv
 
   displayName: 'Run sec scanning'
 
 - script: |
-    export UPLOAD_TOKEN=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
-    echo "$UPLOAD_TOKEN" | ./codeql/codeql github upload-results \
-    --repository=Kaiba1413/BOSCH_CodeRace-TestPy \
-    --ref=refs/heads/sontran_test \
-    --sarif=python-results.sarif --github-auth-stdin
+    cat python-results.csv
 
-  displayName: 'Upload result'
+  displayName: 'Check result'
