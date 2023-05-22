@@ -1,34 +1,6 @@
-import pandas as pd
-import requests
-import subprocess
-from django.db import connection
+import os
 
 ###############################
-table_name = "orders"
-df = pd.read_sql(sql='''
-    SELECT * FROM {};
-'''.format(table_name))
-
-###############################
-secret = "1283712938721983721"
-def encryptInTheNewbieWay(text):
-    return text ^ secret
-
-###############################
-data = requests.get("https://www.sciencedirect.com/", verify = False)
-print(data.status_code)
-
-###############################
-domain = input("Enter the Domain: ")
-output = subprocess.check_output(f"nslookup {domain}", shell=True, encoding='UTF-8')
-print(output)
-
-###############################
-def find_user(username):
-    with connection.cursor() as cur:
-        cur.execute(f"""select username from USERS where name = '%s'""" % username)
-        output = cur.fetchone()
-    return output
 # CWE-628: Function Call with Incorrectly Specified Arguments
 ADMIN_ROLES = 1
 USER_GRANTED_ROLES = 2
@@ -65,15 +37,31 @@ def calculate_surface_area(s, r):
         isRValid = True
         isSValid = True
         surface_area = pi * r * s + pi * pow(r, 2)
-        if (not isRValid or not isSValid):
+        if (not isSValid):
             print("This is dead code !!!")
 
     if(r > 1.0 and s > 0.0):
         isRValid = True
-        isRValid = True
+        isRValid = True # set wrong variable
         surface_area = pi * r * s + pi * pow(r, 2)
+        if (isSValid):
+            print("This is also dead code !!!")
     
     if (isRValid and isSValid):
         result = surface_area
 
     return result
+
+###############################
+# CWE-732: Incorrect Permission Assignment for Critical Resource
+def create_some_file(filename):
+    f = open(filename, "w")
+    f.write("Secret phase: YOLO")
+    f.close()
+
+    ### issue
+    #os.chmod(filename, 0x777)
+
+    ### no issue
+    mode = 0x777
+    os.chmod(filename, mode)    
