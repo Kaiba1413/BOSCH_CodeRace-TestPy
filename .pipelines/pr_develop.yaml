@@ -28,23 +28,16 @@ steps:
   displayName: 'Run a multi-line script'
 
 - script: |
-    echo Install dependency
-    sudo apt-get install python3 python3-pip virtualenv -y
-    wget https://github.com/github/codeql-action/releases/download/codeql-bundle-20230428/codeql-bundle-linux64.tar.gz
-    tar -xvzf ./codeql-bundle-linux64.tar.gz
-    export PATH=$PATH:$PWD/codeql
-
-  displayName: 'Get latest CodeQL package. Install on Agent.'
+    ls
+    echo Install
+    sudo apt-get update
+    sudo apt-get install zip -y
+    sudo apt-get install python3 -y
+    pip3 install bandit
+  displayName: 'Install dependenies'
 
 - script: |
     echo Start Security Static Check
-    ./codeql/codeql database create codeql-dbs --source-root=sontran --language=python
-    ./codeql/codeql database analyze codeql-dbs python-code-scanning.qls \
-    --format=csv --output=python-results.csv
-
-  displayName: 'Run sec scanning'
-
-- script: |
-    cat python-results.csv
-
-  displayName: 'Check result'
+    cd sontran
+    bandit -r ./*.py
+  displayName: 'Run SEC scanning'
