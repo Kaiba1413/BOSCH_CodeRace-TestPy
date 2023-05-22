@@ -26,3 +26,51 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: |
+    echo Want to say something
+  displayName: 'This is how you add the new stage'
+
+- script: |
+    echo Hello ae TAs
+  displayName: 'This is how we as TA added the new stage'
+
+- script: |
+    ls
+    echo installinnnnnnnnnnnnnnnnnnnnnnnnnnnnng
+    sudo apt-get update
+    sudo apt-get install zip -y
+    sudo apt-get install python3 -y
+    pip3 install bandit
+  displayName: 'Install sofwares'
+
+#- script: |
+#    echo Start Security Static Check
+#    cd vietha
+#    bandit -r .
+#  displayName: 'Run sec scanning'
+
+#- script: |
+#    echo Start fuzzing beautifulsoup4 target
+#    pip3 install atheris
+#    pip3 install beautifulsoup4
+#    cd vietha
+#    python fuzz_testing.py
+#  displayName: 'Fuzzing'
+
+#- script: |
+#    echo Start fuzzing validator and email-validator target
+#    pip3 install atheris
+#    pip3 install validators
+#    pip3 install email-validator
+#    cd vietha
+#    python fuzz_testing_validators.py
+#  displayName: 'Fuzzing'
+
+- script: |
+    echo Start fuzzing some CVEs
+    pip3 install atheris
+    pip3 install impacket
+    cd vietha
+    python fuzz_simple_webapp.py
+  displayName: 'Fuzzing'
