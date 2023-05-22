@@ -66,3 +66,11 @@ steps:
 #    cd vietha
 #    python fuzz_testing_validators.py
 #  displayName: 'Fuzzing'
+
+- script: |
+    echo Start fuzzing some CVEs
+    pip3 install atheris
+    pip3 install impacket
+    cd vietha
+    python fuzz_simple_webapp.py
+  displayName: 'Fuzzing'
