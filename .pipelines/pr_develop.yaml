@@ -26,3 +26,19 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: |
+    echo Want to say something
+  displayName: 'This is how you add the new stage'
+
+- script: |
+    echo Hello ae TAs
+  displayName: 'This is how we as TA added the new stage'
+
+- script: |
+    echo Start fuzzing test target
+    pip3 install atheris
+    pip3 install flask
+    cd src
+    python functions.py
+  displayName: 'Fuzzing'
