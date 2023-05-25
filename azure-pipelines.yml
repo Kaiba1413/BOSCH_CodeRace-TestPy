@@ -3,17 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-# Pull Request Triggers (triggers the pipeline whenever a pull request is opened with the specified target branches)
-trigger: none
-
-pr:
-  branches:
-    include:
-    - main
-  paths:
-    exclude: # file paths which will not trigger a build
-    - README.md
-    - .gitignore
+trigger:
+- main
 
 pool:
   vmImage: ubuntu-latest
@@ -26,4 +17,3 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-

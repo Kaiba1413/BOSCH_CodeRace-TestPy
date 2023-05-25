@@ -1,6 +1,0 @@
-variables:
-  # Service connections to JFrog Container Registry, for both the Test repo and Production repo.  Update to different identifiers if relevant
-  - name:  SERVICE_CONNECTION_JFROG_GENERIC_REGISTRY
-    value: 'bdc-artifactory'
-  - name:  SERVICE_CONNECTION_JFROG_DOCKER_REGISTRY
-    value: 'bdc-artifactory-docker-registry-api'
