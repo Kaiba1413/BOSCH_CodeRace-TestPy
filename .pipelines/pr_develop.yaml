@@ -3,13 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-# Pull Request Triggers (triggers the pipeline whenever a pull request is opened with the specified target branches)
-trigger: none
+trigger:
+- ABCD
 
 pr:
   branches:
     include:
-    - main
+    - ABCD
   paths:
     exclude: # file paths which will not trigger a build
     - README.md
@@ -19,10 +19,38 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: echo Hello, ABCD Team!
+  displayName: 'Just a friendly message'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+  displayName: 'Upgrade system'
+
+- script: |
+    pip install pipreqs
+    pipreqs --force
+  displayName: 'Create requirements.txt'
+
+- script: pip install -r requirements.txt -y
+  displayName: 'Install requirements'
+
+- script: pip install bandit safety pylint
+  displayName: 'Install test unit'
+
+- script: bandit -r .
+  displayName: 'Test code vulnerability'
+
+- script: safety check
+  displayName: 'Test dependencies vulnerabilities'
+
+- script: |
+    pylint src/applications.py --errors-only
+    pylint src/lib.py --errors-only
+  displayName: 'Test syntax'
+
+- script: python -m unittest discover tests
+  displayName: 'Run tests'
+
+- script: echo Done !!!
+  displayName: 'Done testing'
